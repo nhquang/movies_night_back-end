@@ -25,6 +25,16 @@ public class UserController {
         }
     }
 
+    @GetMapping("/users/{id}")
+    public ResponseEntity getAnUser(@PathVariable("id") String id){
+        try{
+            return new ResponseEntity(service.getAnUser(id), HttpStatus.OK);
+        }
+        catch(Exception ex){
+            return new ResponseEntity(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PostMapping(value = "/users", consumes = {
             MediaType.APPLICATION_JSON_VALUE
     })

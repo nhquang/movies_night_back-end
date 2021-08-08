@@ -57,9 +57,8 @@ public class UserService implements UserDetailsService
             throw new Exception("First Name is empty!");
         if(user.getLastName() == null || user.getLastName().trim() == "")
             throw new Exception("Last Name is empty!");
-        //if(user.getRole() == null || user.getRole() == "")
-        //    throw new Exception("Role is empty!");
 
+        user.setRole("user");
         user.setFirstName(user.getFirstName().trim());
         user.setLastName(user.getLastName().trim());
 
@@ -71,7 +70,7 @@ public class UserService implements UserDetailsService
         return repository.findAll();
     }
 
-    public Optional<User> getAUser(String id) throws Exception
+    public Optional<User> getAnUser(String id) throws Exception
     {
         Optional<User> user = repository.findById(id);
         if(user.isEmpty())

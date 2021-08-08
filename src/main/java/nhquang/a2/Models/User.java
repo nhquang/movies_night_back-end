@@ -14,14 +14,14 @@ public class User
     private String email;
     private String username;
     private String password;
-    //private String role;
+    private String role;
 
     public User()
     {
 
     }
 
-    public User(String id, String firstName, String lastName, String email, String username, String password) {
+    public User(String id, String firstName, String lastName, String email, String username, String password, String role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -78,11 +78,11 @@ public class User
         this.password = password;
     }
 
-    //public String getRole() {
-    //    return role;
-    //}
+    public String getRole() {
+        return role;
+    }
 
-    //public void setRole(String role) {
-    //    this.role = role;
-    //}
+    public void setRole(String role) {
+        this.role = role;
+    }
 }

@@ -37,4 +37,22 @@ public class SearchController {
             return new ResponseEntity(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @GetMapping("/banners")
+    public ResponseEntity getBanners(){
+        try {
+            List<Item> rs = new ArrayList<Item>();
+            rs.addAll(movieService.getFeaturedMovies());
+            rs.addAll(tvShowService.getFeaturedTVShows());
+            String[] banners = new String[rs.size()];
+            for (int i = 0; i < banners.length; i++){
+                banners[i] = rs.get(i).getPoster();
+            }
+            return new ResponseEntity(banners, HttpStatus.OK);
+        }
+        catch (Exception ex){
+            return new ResponseEntity(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
 }

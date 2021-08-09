@@ -40,7 +40,7 @@ public class UserService implements UserDetailsService
         if(user.getLastName() == null || user.getLastName().trim() == "")
             throw new Exception("Last Name is empty!");
         Criteria criteria = new Criteria();
-        criteria.orOperator(Criteria.where("email").is(user.getEmail()), Criteria.where("username").is(user.getEmail()));
+        criteria.orOperator(Criteria.where("email").is(user.getEmail()), Criteria.where("username").is(user.getUsername()));
         Query query = new Query();
         query.addCriteria(criteria);
         List<User> users = mongoTemplate.find(query, User.class);

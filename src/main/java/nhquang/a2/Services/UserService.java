@@ -35,6 +35,10 @@ public class UserService implements UserDetailsService
 
     public User addUser(User user) throws Exception
     {
+        if(user.getFirstName() == null || user.getFirstName().trim() == "")
+            throw new Exception("First Name is empty!");
+        if(user.getLastName() == null || user.getLastName().trim() == "")
+            throw new Exception("Last Name is empty!");
         Criteria criteria = new Criteria();
         criteria.orOperator(Criteria.where("email").is(user.getEmail()), Criteria.where("username").is(user.getEmail()));
         Query query = new Query();
@@ -53,10 +57,7 @@ public class UserService implements UserDetailsService
 
         String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-        if(user.getFirstName() == null || user.getFirstName().trim() == "")
-            throw new Exception("First Name is empty!");
-        if(user.getLastName() == null || user.getLastName().trim() == "")
-            throw new Exception("Last Name is empty!");
+
 
         user.setRole("user");
         user.setFirstName(user.getFirstName().trim());

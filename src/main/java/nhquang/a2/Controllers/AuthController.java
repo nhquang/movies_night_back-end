@@ -1,5 +1,6 @@
 package nhquang.a2.Controllers;
 
+import nhquang.a2.Models.JwtResponse;
 import nhquang.a2.Models.User;
 import nhquang.a2.Services.UserService;
 import nhquang.a2.utility.JWTUtility;
@@ -39,8 +40,6 @@ public class AuthController {
 
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
 
-            //return new ResponseEntity("Succeeded!", HttpStatus.OK);
-
         }
 
         catch (BadCredentialsException ex)
@@ -53,7 +52,7 @@ public class AuthController {
         final String token =
                 jwtUtility.generateToken(userDetails);
 
-        return  new ResponseEntity(token, HttpStatus.ACCEPTED);
+        return  new ResponseEntity(new JwtResponse(token), HttpStatus.ACCEPTED);
 
 
     }

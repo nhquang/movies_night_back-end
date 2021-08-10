@@ -12,6 +12,7 @@ public class Movie extends Item{
     @Id
     private String _id;
     private String length;
+    private boolean movie = true;
 
 
     public Movie(String _id, String url, String name, String overview, String[] genres,String buy, String rent, String releaseDate, String length, String trailer, String poster) {
@@ -36,7 +37,12 @@ public class Movie extends Item{
         this.length = length;
     }
 
-
+    public boolean isMovie() {
+        return movie;
+    }
+    public void setMovie(Boolean val){
+        movie = val;
+    }
 
     @Override
     public String toString() {
@@ -53,6 +59,7 @@ public class Movie extends Item{
                 ", length:'" + length + '\'' +
                 ", trailer:'" + trailer + '\'' +
                 ", poster:'" + poster + '\'' +
+                ", movie:'" + movie + '\'' +
                 '}';
     }
 }
